@@ -3,11 +3,14 @@ package com.hession.chessapp.board;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 
-public class Board {
+public class ChessBoard {
     private final String color = "Black";
     private final GridPane chessBoard = new GridPane();
+    private StackPane chessSquareContainer;
+    private final ChessBoardArray boardAsArray;
 
-    public Board() {
+    public ChessBoard() {
+        boardAsArray = new ChessBoardArray();
         buildChessBoard();
     }
 
@@ -19,28 +22,22 @@ public class Board {
 
         for (int row = 1; row < 9; row++) {
             for (int col = 1; col < 9; col++) {
-                StackPane chessSquareContainer = new StackPane();
-                addChessSquareContainerToBoard(chessSquareContainer, row, col);
+                chessSquareContainer = new StackPane();
+                addChessSquareContainerToBoard(row, col);
             }
         }
-
         if (color == "Black") {
             chessBoard.setRotate(180);
         }
     }
 
-    private void addChessSquareContainerToBoard(StackPane chessSquareContainer, int row, int col) {
+    private void addChessSquareContainerToBoard(int row, int col) {
         ChessSquare chessSquare = new ChessSquare();
         setChessSquareAttributes(chessSquare, row, col);
         chessSquareContainer.getChildren().add(chessSquare);
         chessBoard.add(chessSquareContainer, col, row);
+        boardAsArray.addSquareAtCoords(chessSquare, row, col);
 
-        if (col == 1) {
-            chessSquare.addNumberToSquareView();
-        }
-        if (row == 1) {
-            chessSquare.addLetterToSquareView();
-        }
         System.out.println("id: " + chessSquare.getId() + " row: " + chessSquare.getRow() + " col: " + chessSquare.getCol());
     }
 
@@ -50,4 +47,10 @@ public class Board {
         chessSquare.setSquareColor();
         chessSquare.createAndSetId();
     }
+
+    private void getChessSquareAtCoords(int row, int col) {
+        ChessSquare chessSquare = boardAsArray.getSquareAtCoords(row, col);
+        System.out.println("Row: " + chessSquare.getRow() + " Col: " + chessSquare.getCol() + " ID: " + chessSquare.getId());
+    }
+
 }
