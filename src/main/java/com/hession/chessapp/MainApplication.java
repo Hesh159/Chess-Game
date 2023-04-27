@@ -1,6 +1,6 @@
 package com.hession.chessapp;
 
-import com.hession.chessapp.board.Board;
+import com.hession.chessapp.board.ChessBoard;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -14,7 +14,7 @@ public class MainApplication extends Application {
         stage.setTitle("Chess Game");
         stage.setHeight(800);
         stage.setWidth(1000);
-        Board chessBoard = new Board();
+        ChessBoard chessBoard = new ChessBoard();
         Group board = new Group(chessBoard.getChessBoard());
         Scene scene = new Scene(board);
         stage.setScene(scene);
