@@ -6,8 +6,8 @@ import javafx.scene.shape.Rectangle;
 public class ChessSquare extends Rectangle {
     private static final int ROW_START_INT = 9;
     private static final int ASCII_LOWER_LETTER_START = 96;
-    private static final Color LIGHT = Color.BEIGE;
-    private static final Color DARK = Color.BROWN;
+    protected static final Color LIGHT = Color.BEIGE;
+    protected static final Color DARK = Color.BROWN;
 
     private boolean isOccupied;
     private int row;
