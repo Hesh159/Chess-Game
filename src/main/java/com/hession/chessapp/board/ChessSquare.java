@@ -2,7 +2,6 @@ package com.hession.chessapp.board;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 
 public class ChessSquare extends Rectangle {
     private static final int ROW_START_INT = 9;
@@ -77,7 +76,7 @@ public class ChessSquare extends Rectangle {
      * the square is dark. As our grid's (1, 1) coordinate is in the top left, rather than bottom left like a chessboard, a square
      * with odd/even rows and cols should be set to light
      */
-    public void setSquareColor() {
+    protected void setSquareColor() {
         boolean isColEven = (col % 2 == 0);
         boolean isRowEven = (row % 2 == 0);
 
@@ -93,7 +92,7 @@ public class ChessSquare extends Rectangle {
      * The letter coordinate is retrieved from the column of the ChessSquare, while the number coordinate is retrieved
      * from the row of the ChessSquare
      */
-    public void createAndSetId() {
+    protected void createAndSetId() {
         char letterCoordinate = getLetterCoordinate();
         int numberCoordinate = getNumberCoordinate();
         String letterCoordinateString = Character.toString(letterCoordinate);
@@ -108,7 +107,7 @@ public class ChessSquare extends Rectangle {
      *
      * @return - The letter coordinate of the ChessSquare, as a char
      */
-    private char getLetterCoordinate() {
+    protected char getLetterCoordinate() {
         return (char) (col + ASCII_LOWER_LETTER_START);
     }
 
@@ -118,17 +117,8 @@ public class ChessSquare extends Rectangle {
      *
      * @return - The number coordinate of the ChessSquare
      */
-    private int getNumberCoordinate() {
+    protected int getNumberCoordinate() {
         return ROW_START_INT - row;
     }
 
-    public void addNumberToSquareView() {
-        int numberCoordinate = getNumberCoordinate();
-        Text numberText = new Text(Integer.toString(numberCoordinate));
-    }
-
-    public void addLetterToSquareView() {
-        char letterCoordinate = getLetterCoordinate();
-        Text letterText = new Text(Character.toString(letterCoordinate));
-    }
 }
