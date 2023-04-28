@@ -5,17 +5,17 @@ import javafx.scene.layout.StackPane;
 
 public class ChessBoard {
     private final String color = "Black";
-    private final GridPane chessBoard = new GridPane();
+    private final GridPane board = new GridPane();
     private StackPane chessSquareContainer;
-    private final ChessBoardArray boardAsArray;
+    private final ChessBoardMatrix boardMatrix;
 
     public ChessBoard() {
-        boardAsArray = new ChessBoardArray();
+        boardMatrix = new ChessBoardMatrix();
         buildChessBoard();
     }
 
-    public GridPane getChessBoard() {
-        return this.chessBoard;
+    public GridPane getBoard() {
+        return this.board;
     }
 
     private void buildChessBoard() {
@@ -27,30 +27,25 @@ public class ChessBoard {
             }
         }
         if (color == "Black") {
-            chessBoard.setRotate(180);
+            board.setRotate(180);
         }
     }
 
     private void addChessSquareContainerToBoard(int row, int col) {
-        ChessSquare chessSquare = new ChessSquare();
-        setChessSquareAttributes(chessSquare, row, col);
+        ChessSquare chessSquare = new ChessSquare(row, col);
+        setChessSquareAttributes(chessSquare);
         chessSquareContainer.getChildren().add(chessSquare);
-        chessBoard.add(chessSquareContainer, col, row);
-        boardAsArray.addSquareAtCoords(chessSquare, row, col);
-
-        System.out.println("id: " + chessSquare.getId() + " row: " + chessSquare.getRow() + " col: " + chessSquare.getCol());
+        board.add(chessSquareContainer, col, row);
+        boardMatrix.addSquareToBoardMatrix(chessSquare);
     }
 
-    private void setChessSquareAttributes(ChessSquare chessSquare, int row, int col) {
-        chessSquare.setRow(row);
-        chessSquare.setCol(col);
+    private void setChessSquareAttributes(ChessSquare chessSquare) {
         chessSquare.setSquareColor();
         chessSquare.createAndSetId();
     }
 
-    private void getChessSquareAtCoords(int row, int col) {
-        ChessSquare chessSquare = boardAsArray.getSquareAtCoords(row, col);
-        System.out.println("Row: " + chessSquare.getRow() + " Col: " + chessSquare.getCol() + " ID: " + chessSquare.getId());
+    public ChessSquare getChessSquareAtCoords(int row, int col) {
+        return boardMatrix.getSquareAtCoords(row, col);
     }
 
 }

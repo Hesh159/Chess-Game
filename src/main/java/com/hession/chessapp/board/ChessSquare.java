@@ -13,7 +13,9 @@ public class ChessSquare extends Rectangle {
     private int row;
     private int col;
 
-    public ChessSquare() {
+    public ChessSquare(int row, int col) {
+        setRow(row);
+        setCol(col);
         this.setWidth(50);
         this.setHeight(50);
     }
