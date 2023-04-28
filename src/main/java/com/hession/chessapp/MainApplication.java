@@ -15,7 +15,7 @@ public class MainApplication extends Application {
         stage.setHeight(800);
         stage.setWidth(1000);
         ChessBoard chessBoard = new ChessBoard();
-        Group board = new Group(chessBoard.getChessBoard());
+        Group board = new Group(chessBoard.getBoard());
         Scene scene = new Scene(board);
         stage.setScene(scene);
         stage.show();
