@@ -1,9 +1,6 @@
 package com.hession.chessapp.board;
 
 import org.junit.jupiter.api.*;
-
-import java.security.cert.CertSelector;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class ChessSquareTest {
@@ -12,7 +9,7 @@ class ChessSquareTest {
 
     @BeforeAll
     static void setup() {
-        chessSquare = new ChessSquare();
+        chessSquare = new ChessSquare(1, 1);
     }
 
     @Nested
