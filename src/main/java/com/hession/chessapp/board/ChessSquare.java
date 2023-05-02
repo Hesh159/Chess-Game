@@ -74,7 +74,9 @@ public class ChessSquare extends Rectangle {
     }
 
     /**
-     * Determines and sets colour of Square - on a chessboard if a squares row and column are both odd, or both even numbers,
+     * Determines and sets colour of Square
+     * <p>
+     * On a chessboard if a squares row and column are both odd, or both even numbers,
      * the square is dark. As our grid's (1, 1) coordinate is in the top left, rather than bottom left like a chessboard, a square
      * with odd/even rows and cols should be set to light
      */
@@ -90,7 +92,9 @@ public class ChessSquare extends Rectangle {
     }
 
     /**
-     * Create and set the ID of the ChessSquare - the id component represents the coordinate of the ChessSquare.
+     * Create and set the ID of the ChessSquare
+     * <p>
+     * The id component represents the coordinate of the ChessSquare.
      * The letter coordinate is retrieved from the column of the ChessSquare, while the number coordinate is retrieved
      * from the row of the ChessSquare
      */
@@ -103,7 +107,9 @@ public class ChessSquare extends Rectangle {
     }
 
     /**
-     * Determine the letter coordinate of the ChessSquare, the value of the column is added to ASCII_LOWER_LETTER_START. The value of ASCII_LOWER_LETTER_START
+     * Determine the letter coordinate of the ChessSquare
+     * <p>
+     * The value of the column is added to ASCII_LOWER_LETTER_START. The value of ASCII_LOWER_LETTER_START
      * is 96 - one before the Ascii value of 'a', as the column value ranges from 1 to 8, adding the column to 96 returns the characters between 'a' and 'h' -
      * the letter coordinates of a chessboard
      *
@@ -114,7 +120,9 @@ public class ChessSquare extends Rectangle {
     }
 
     /**
-     * Determine the number coordinate of the ChessSquare. The value of ROW_START_INT is set to 9, taking away the value of row returns the correct row value of the square.
+     * Determine the number coordinate of the ChessSquare
+     * <p>
+     * The value of ROW_START_INT is set to 9, taking away the value of row returns the correct row value of the square.
      * This is the case as the top left square of the javafx grid has a coordinate of (1,1), whereas the top left square of a chessboard has a coordinate of (1,8)
      *
      * @return - The number coordinate of the ChessSquare
