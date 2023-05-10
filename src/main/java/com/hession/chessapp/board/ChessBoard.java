@@ -4,6 +4,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 
 public class ChessBoard {
+
+    private static final int ROW_TO_GRID_TRANSLATE = 1;
+    private static final int COL_TO_GRID_TRANSLATE = 1;
     private final String color = "Black";
     private final GridPane board = new GridPane();
     private StackPane chessSquareContainer;
@@ -20,8 +23,8 @@ public class ChessBoard {
 
     private void buildChessBoard() {
 
-        for (int row = 1; row < 9; row++) {
-            for (int col = 1; col < 9; col++) {
+        for (int row = 0; row < 8; row++) {
+            for (int col = 0; col < 8; col++) {
                 chessSquareContainer = new StackPane();
                 addChessSquareContainerToBoard(row, col);
             }
@@ -35,7 +38,10 @@ public class ChessBoard {
         ChessSquare chessSquare = new ChessSquare(row, col);
         setChessSquareAttributes(chessSquare);
         chessSquareContainer.getChildren().add(chessSquare);
-        board.add(chessSquareContainer, col, row);
+
+        int chessSquareGridRow = row + ROW_TO_GRID_TRANSLATE;
+        int chessSquareGridCol = col + COL_TO_GRID_TRANSLATE;
+        board.add(chessSquareContainer, chessSquareGridCol, chessSquareGridRow);
         boardMatrix.addSquareToBoardMatrix(chessSquare);
     }
 
@@ -43,9 +49,4 @@ public class ChessBoard {
         chessSquare.setSquareColor();
         chessSquare.createAndSetId();
     }
-
-    public ChessSquare getChessSquareAtCoords(int row, int col) {
-        return boardMatrix.getSquareAtCoords(row, col);
-    }
-
 }

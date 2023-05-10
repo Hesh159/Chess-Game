@@ -9,7 +9,7 @@ class ChessSquareTest {
 
     @BeforeAll
     static void setup() {
-        chessSquare = new ChessSquare(1, 1);
+        chessSquare = new ChessSquare(0, 0);
     }
 
     @Nested
@@ -17,47 +17,47 @@ class ChessSquareTest {
     @DisplayName("Ensure ChessSquare coordinates and ID are set appropriately")
     class SquareIDTests {
         @Tag("LetterCoordinateTests")
-        @DisplayName("Ensure setting ChessSquare column to 1 returns a letter coordinate of 'a'")
+        @DisplayName("Ensure setting ChessSquare column to 0 returns a letter coordinate of 'a'")
         @Test
-        void givenColOf1_TestSquareLetterCoordEquals_a() {
-            chessSquare.setCol(1);
+        void givenColOf0_TestSquareLetterCoordEquals_a() {
+            chessSquare.setCol(0);
             char expectedLetterCoord = 'a';
             assertEquals(expectedLetterCoord, chessSquare.getLetterCoordinate());
         }
 
         @Tag("LetterCoordinateTests")
-        @DisplayName("Ensure setting ChessSquare column to 8 returns a letter coordinate of 'h'")
+        @DisplayName("Ensure setting ChessSquare column to 7 returns a letter coordinate of 'h'")
         @Test
-        void givenColOf8_TestSquareLetterCoordEquals_h() {
-            chessSquare.setCol(8);
+        void givenColOf7_TestSquareLetterCoordEquals_h() {
+            chessSquare.setCol(7);
             char expectedLetterCoord = 'h';
             assertEquals(expectedLetterCoord, chessSquare.getLetterCoordinate());
         }
 
         @Tag("NumberCoordinateTests")
-        @DisplayName("Ensure setting ChessSquare row to 1 returns a number coordinate of 8")
+        @DisplayName("Ensure setting ChessSquare row to 0 returns a number coordinate of 8")
         @Test
-        void givenRowOf1_TestSquareNumberCoordEquals_8() {
-            chessSquare.setRow(8);
-            int expectedNumberCoord = 1;
-            assertEquals(expectedNumberCoord, chessSquare.getNumberCoordinate());
-        }
-
-        @Tag("NumberCoordinateTests")
-        @DisplayName("Ensure setting ChessSquare row to 8 returns a number coordinate of 1")
-        @Test
-        void givenRowOf8_TestSquareNumberCoordEquals_1() {
-            chessSquare.setRow(1);
+        void givenRowOf0_TestSquareNumberCoordEquals_8() {
+            chessSquare.setRow(0);
             int expectedNumberCoord = 8;
             assertEquals(expectedNumberCoord, chessSquare.getNumberCoordinate());
         }
 
-        @Tag("IdTests")
-        @DisplayName("Ensure setting ChessSquare row to 6, and col to 8 returns an id of h3")
+        @Tag("NumberCoordinateTests")
+        @DisplayName("Ensure setting ChessSquare row to 7 returns a number coordinate of 1")
         @Test
-        void givenRowOf6AndColOf8_TestSquareIdEquals_h3() {
-            chessSquare.setRow(6);
-            chessSquare.setCol(8);
+        void givenRowOf7_TestSquareNumberCoordEquals_1() {
+            chessSquare.setRow(7);
+            int expectedNumberCoord = 1;
+            assertEquals(expectedNumberCoord, chessSquare.getNumberCoordinate());
+        }
+
+        @Tag("IdTests")
+        @DisplayName("Ensure setting ChessSquare row to 5, and col to 7 returns an id of h3")
+        @Test
+        void givenRowOf5AndColOf7_TestSquareIdEquals_h3() {
+            chessSquare.setRow(5);
+            chessSquare.setCol(7);
             chessSquare.createAndSetId();
             String expectedId = "h3";
             assertEquals(expectedId, chessSquare.getId());
@@ -73,8 +73,8 @@ class ChessSquareTest {
         @DisplayName("Ensure Square is correctly being set to dark")
         @Test
         void testSquareIsCorrectlySetToDark() {
-            chessSquare.setRow(8);
-            chessSquare.setCol(3);
+            chessSquare.setRow(7);
+            chessSquare.setCol(2);
             chessSquare.setSquareColor();
             assertEquals(ChessSquare.DARK, chessSquare.getFill());
         }
@@ -83,8 +83,8 @@ class ChessSquareTest {
         @DisplayName("Ensure Square is correctly being set to light")
         @Test
         void testSquareIsCorrectlySetToLight() {
-            chessSquare.setRow(4);
-            chessSquare.setCol(2);
+            chessSquare.setRow(3);
+            chessSquare.setCol(1);
             chessSquare.setSquareColor();
             assertEquals(ChessSquare.LIGHT, chessSquare.getFill());
         }

@@ -4,8 +4,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public class ChessSquare extends Rectangle {
-    private static final int ROW_START_INT = 9;
-    private static final int ASCII_LOWER_LETTER_START = 96;
+    private static final int ROW_START_INT = 8;
+    private static final int ASCII_LOWER_LETTER_START = 97;
     protected static final Color LIGHT = Color.BEIGE;
     protected static final Color DARK = Color.BROWN;
 
@@ -60,7 +60,7 @@ public class ChessSquare extends Rectangle {
     /**
      * Determine if Square is occupied (has a piece on it)
      */
-    public boolean isSquareOccupied() {
+    public boolean isOccupied() {
         return isOccupied;
     }
 
@@ -69,7 +69,7 @@ public class ChessSquare extends Rectangle {
      *
      * @param occupationStatus - Whether a square has a piece on it
      */
-    public void setSquareOccupied(boolean occupationStatus) {
+    public void setOccupied(boolean occupationStatus) {
         this.isOccupied = occupationStatus;
     }
 
@@ -110,7 +110,7 @@ public class ChessSquare extends Rectangle {
      * Determine the letter coordinate of the ChessSquare
      * <p>
      * The value of the column is added to ASCII_LOWER_LETTER_START. The value of ASCII_LOWER_LETTER_START
-     * is 96 - one before the Ascii value of 'a', as the column value ranges from 1 to 8, adding the column to 96 returns the characters between 'a' and 'h' -
+     * is 97 - the Ascii value of 'a', as the column value ranges from 0 to 7, adding the column to 96 returns the characters between 'a' and 'h' -
      * the letter coordinates of a chessboard
      *
      * @return - The letter coordinate of the ChessSquare, as a char
@@ -122,7 +122,7 @@ public class ChessSquare extends Rectangle {
     /**
      * Determine the number coordinate of the ChessSquare
      * <p>
-     * The value of ROW_START_INT is set to 9, taking away the value of row returns the correct row value of the square.
+     * The value of ROW_START_INT is set to 8, taking away the value of row returns the correct row value of the square.
      * This is the case as the top left square of the javafx grid has a coordinate of (1,1), whereas the top left square of a chessboard has a coordinate of (1,8)
      *
      * @return - The number coordinate of the ChessSquare
