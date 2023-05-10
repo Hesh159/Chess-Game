@@ -7,6 +7,8 @@ public class ChessBoardMatrix {
 
     private static final int BOARD_SIZE = 8;
     private static final int GRID_TO_ARRAY_TRANSLATE = 1;
+    public static final int ROW_INDEX_OF_COORDINATE_ARRAY = 0;
+    public static final int COL_INDEX_OF_COORDINATE_ARRAY = 1;
 
     private final List<List<ChessSquare>> chessBoard = new ArrayList<>();
 
@@ -34,5 +36,20 @@ public class ChessBoardMatrix {
     public ChessSquare getSquareAtCoords(int row, int col) {
         List<ChessSquare> chessBoardArrayRow = chessBoard.get(row - GRID_TO_ARRAY_TRANSLATE);
         return chessBoardArrayRow.get(col - GRID_TO_ARRAY_TRANSLATE);
+    }
+
+    public List<Integer> getSquarePositionInMatrix(ChessSquare square) {
+        List<Integer> squareCoordinates = new ArrayList<>();
+        squareCoordinates.add(getMatrixRowOfSquare(square));
+        squareCoordinates.add(getMatrixColOfSquare(square));
+        return squareCoordinates;
+    }
+
+    private int getMatrixRowOfSquare(ChessSquare square) {
+        return square.getRow() - GRID_TO_ARRAY_TRANSLATE;
+    }
+
+    private int getMatrixColOfSquare(ChessSquare square) {
+        return square.getCol() - GRID_TO_ARRAY_TRANSLATE;
     }
 }

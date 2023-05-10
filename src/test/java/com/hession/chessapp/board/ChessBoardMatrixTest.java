@@ -36,4 +36,14 @@ class ChessBoardMatrixTest {
         ChessSquare resultSquare = chessBoardMatrix.getSquareAtCoords(5, 4);
         assertEquals(square, resultSquare);
     }
+
+    @Tag("ChessBoardMatrixGetSquareCoordinateTest")
+    @DisplayName("Ensure a Square at 3, 4, returns proper matrix coordinates")
+    @Test
+    void test_getMatrixCoordinatesOfSquareAt_3_4() {
+        ChessSquare square = new ChessSquare(3, 4);
+        List<Integer> squareCoordinates = chessBoardMatrix.getSquarePositionInMatrix(square);
+        assertEquals(2, squareCoordinates.get(ChessBoardMatrix.ROW_INDEX_OF_COORDINATE_ARRAY));
+        assertEquals(3, squareCoordinates.get(ChessBoardMatrix.COL_INDEX_OF_COORDINATE_ARRAY));
+    }
 }
