@@ -6,36 +6,39 @@ import java.util.List;
 public class ChessBoardMatrix {
 
     private static final int BOARD_SIZE = 8;
-    private static final int GRID_TO_ARRAY_TRANSLATE = 1;
     public static final int ROW_INDEX_OF_COORDINATE_ARRAY = 0;
     public static final int COL_INDEX_OF_COORDINATE_ARRAY = 1;
 
-    private final List<List<ChessSquare>> chessBoard = new ArrayList<>();
+    private final List<List<ChessSquare>> boardMatrix = new ArrayList<>();
 
     public ChessBoardMatrix() {
+        buildChessBoardMatrix();
+    }
+
+    public List<List<ChessSquare>> getBoardMatrix() {
+        return this.boardMatrix;
+    }
+
+    public void buildChessBoardMatrix() {
         for (int i = 0; i < BOARD_SIZE; i++) {
             List<ChessSquare> chessBoardRow = new ArrayList<>();
             for (int j = 0; j < BOARD_SIZE; j++) {
                 chessBoardRow.add(null);
             }
-            chessBoard.add(chessBoardRow);
+            boardMatrix.add(chessBoardRow);
         }
-    }
-
-    public List<List<ChessSquare>> getChessBoard() {
-        return this.chessBoard;
     }
 
     public void addSquareToBoardMatrix(ChessSquare chessSquare) {
         int row = chessSquare.getRow();
         int col = chessSquare.getCol();
-        List<ChessSquare> chessBoardArrayRow = chessBoard.get(row - GRID_TO_ARRAY_TRANSLATE);
-        chessBoardArrayRow.add(col - GRID_TO_ARRAY_TRANSLATE, chessSquare);
+        List<ChessSquare> chessBoardArrayRow = boardMatrix.get(row);
+        chessBoardArrayRow.add(col, chessSquare);
     }
 
     public ChessSquare getSquareAtCoords(int row, int col) {
-        List<ChessSquare> chessBoardArrayRow = chessBoard.get(row - GRID_TO_ARRAY_TRANSLATE);
-        return chessBoardArrayRow.get(col - GRID_TO_ARRAY_TRANSLATE);
+        List<ChessSquare> chessBoardArrayRow = boardMatrix.get(row);
+        return chessBoardArrayRow.get(col);
     }
 
     public List<Integer> getSquarePositionInMatrix(ChessSquare square) {
@@ -45,11 +48,32 @@ public class ChessBoardMatrix {
         return squareCoordinates;
     }
 
-    private int getMatrixRowOfSquare(ChessSquare square) {
-        return square.getRow() - GRID_TO_ARRAY_TRANSLATE;
+    public int getMatrixRowOfSquare(ChessSquare square) {
+        return square.getRow();
     }
 
-    private int getMatrixColOfSquare(ChessSquare square) {
-        return square.getCol() - GRID_TO_ARRAY_TRANSLATE;
+    public int getMatrixColOfSquare(ChessSquare square) {
+        return square.getCol();
     }
+
+    /*
+    public List<BoardCoordinate> getUnoccupiedCoordinatesInSameCol(ChessSquare square) {
+        int squareRow = square.getRow();
+        int squareCol = square.getCol();
+        List<BoardCoordinate> unoccupiedCoordinates = new ArrayList<>();
+        for (int testCol = squareCol - 1; testCol >= 0; testCol--) {
+            //if (getSquareAtCoords(squareRow, squareCol).isOccupied()) {
+                //break;
+            //}
+            unoccupiedCoordinates.add(new BoardCoordinate(squareRow, testCol));
+        }
+        for (int testCol = squareCol + 1; testCol < BOARD_SIZE; testCol++) {
+            //if (getSquareAtCoords(squareRow, squareCol).isOccupied()) {
+                //break;
+            //}
+            unoccupiedCoordinates.add(new BoardCoordinate(squareRow, testCol));
+        }
+        return unoccupiedCoordinates;
+    }
+     */
 }
