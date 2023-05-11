@@ -131,4 +131,11 @@ public class ChessSquare extends Rectangle {
         return ROW_START_INT - row;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof ChessSquare)) {
+            return false;
+        }
+        return this.row == ((ChessSquare) obj).getRow() && this.col == ((ChessSquare) obj).getCol();
+    }
 }

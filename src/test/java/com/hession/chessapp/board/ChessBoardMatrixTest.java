@@ -1,10 +1,11 @@
 package com.hession.chessapp.board;
 
 import org.junit.jupiter.api.*;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ChessBoardMatrixTest {
 
@@ -13,8 +14,8 @@ class ChessBoardMatrixTest {
 
     @BeforeAll
     static void setup() {
-        chessBoardMatrix = new ChessBoardMatrix();
         chessBoard = new ChessBoard();
+        chessBoardMatrix = chessBoard.getChessBoardMatrix();
     }
 
     @Tag("AddSquareTest")
@@ -49,24 +50,40 @@ class ChessBoardMatrixTest {
         assertEquals(4, squareCoordinates.get(ChessBoardMatrix.COL_INDEX_OF_COORDINATE_ARRAY));
     }
 
-    /*
     @Nested
     @Tag("GetCoordinatesBasedOnInputCoordinate")
     @DisplayName("Test the methods for getting coordinates based on an input coordinate")
     class CoordinateTests {
 
-        @Tag("GetCoordinatesInSameColTest")
-        @DisplayName("Ensure all coordinates in the same column as the input Square are returned")
+        @Tag("GetCoordinatesInSameRowTest")
+        @DisplayName("Ensure all coordinates in the same row as the input Square are returned")
         @Test
-        void test_getAllColumnsOfSquareAt_5_0() {
-            ChessSquare square = new ChessSquare(6, 1);
-            List<BoardCoordinate> resultList = chessBoardMatrix.getUnoccupiedCoordinatesInSameCol(square);
+        void test_getAllColumnsOfSquareAtRow_5() {
+            ChessSquare square = new ChessSquare(5, 0);
+            List<ChessSquare> resultList = chessBoardMatrix.getUnoccupiedSquaresInSameRow(square);
             int expectedResultSize = 7;
-            int actualResultSize = resultList.size();
-            assertEquals(expectedResultSize, actualResultSize);
-            //assertFalse();
+            assertThat(resultList).hasSize(expectedResultSize).contains(new ChessSquare(5, 1))
+                    .contains(new ChessSquare(5, 7))
+                    .doesNotContain(new ChessSquare(5, 0));
+        }
+
+        @Tag("GetCoordinatesInSameRowTest")
+        @DisplayName("Ensure getting coordinates in the same row as the input square searches forwards and backwards")
+        @Test
+        void givenInputSquare_whenGetUnoccupiedSquaresInSameRow_thenReturnAll() {
+            ChessSquare square = new ChessSquare(7, 4);
+            List<ChessSquare> resultList = chessBoardMatrix.getUnoccupiedSquaresInSameRow(square);
+            int expectedResultSize = 7;
+            assertThat(resultList).hasSize(expectedResultSize).contains(new ChessSquare(7, 3))
+                    .contains(new ChessSquare(7, 5)).doesNotContain(new ChessSquare(7, 4));
+        }
+
+        @Tag("GetCoordinatesInSameRowTest")
+        @DisplayName("Test getUnoccupiedSquaresInSameRow doesn't add occupied squares")
+        @Test
+        void givenSquare_whenSquaresInRowAreOccupied_thenDontAddToResultList() {
+            ChessSquare square = new ChessSquare(4, 3);
+            //chessBoardMatrix.setSquareOccupiedStatusAtCoords();
         }
     }
-
-     */
 }
