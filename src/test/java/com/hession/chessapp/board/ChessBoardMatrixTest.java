@@ -87,6 +87,7 @@ class ChessBoardMatrixTest {
             chessBoardMatrix.setSquareOccupiedStatusAtCoords(4, 6, true);
             List<ChessSquare> resultList = chessBoardMatrix.getUnoccupiedSquaresInSameRow(square);
             int expectedResultSize = 3;
+            System.out.println(resultList);
             assertThat(resultList).hasSize(expectedResultSize)
                     .contains(new ChessSquare(4, 2))
                     .contains(new ChessSquare(4, 5))

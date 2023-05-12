@@ -70,26 +70,31 @@ public class ChessBoardMatrix {
     }
 
     protected List<ChessSquare> getUnoccupiedSquares(ChessSquare square, boolean checkingRow) {
-        int squareRow = square.getRow();
-        int squareCol = square.getCol();
         List<ChessSquare> unoccupiedSquares = new ArrayList<>();
-        int testCoordinate = (checkingRow) ? squareCol : squareRow;
-
-        for (int testCord = testCoordinate - 1; testCord >= 0; testCord--) {
-            ChessSquare squareAtCurrentCoordinate = (checkingRow) ? getSquareAtCoords(squareRow, testCord) : getSquareAtCoords(testCord, squareCol);
-            if (squareAtCurrentCoordinate.isOccupied()) {
-                break;
-            }
-            unoccupiedSquares.add(squareAtCurrentCoordinate);
-        }
-
-        for (int testCord = testCoordinate + 1; testCord < BOARD_SIZE; testCord++) {
-            ChessSquare squareAtCurrentCoordinate = (checkingRow) ? getSquareAtCoords(squareRow, testCord) : getSquareAtCoords(testCord, squareCol);
-            if (squareAtCurrentCoordinate.isOccupied()) {
-                break;
-            }
-            unoccupiedSquares.add(squareAtCurrentCoordinate);
-        }
+        getUnoccupiedSquaresBelowStartSquare(square, checkingRow, unoccupiedSquares);
+        getUnoccupiedSquaresAboveStartSquare(square, checkingRow, unoccupiedSquares);
         return unoccupiedSquares;
+    }
+
+    private void getUnoccupiedSquaresBelowStartSquare(ChessSquare square, boolean checkingRow, List<ChessSquare> unoccupiedSquares) {
+        int startingCoordinate = (checkingRow) ? square.getCol() : square.getRow();
+        for (int currentCoordinate = startingCoordinate - 1; currentCoordinate >= 0; currentCoordinate--) {
+            ChessSquare squareAtCurrentCoordinate = (checkingRow) ? getSquareAtCoords(square.getRow(), currentCoordinate) : getSquareAtCoords(currentCoordinate, square.getCol());
+            if (squareAtCurrentCoordinate.isOccupied()) {
+                break;
+            }
+            unoccupiedSquares.add(squareAtCurrentCoordinate);
+        }
+    }
+
+    private void getUnoccupiedSquaresAboveStartSquare(ChessSquare square, boolean checkingRow, List<ChessSquare> unoccupiedSquares) {
+        int startingCoordinate = (checkingRow) ? square.getCol() : square.getRow();
+        for (int currentCoordinate = startingCoordinate + 1; currentCoordinate < BOARD_SIZE; currentCoordinate++) {
+            ChessSquare squareAtCurrentCoordinate = (checkingRow) ? getSquareAtCoords(square.getRow(), currentCoordinate) : getSquareAtCoords(currentCoordinate, square.getCol());
+            if (squareAtCurrentCoordinate.isOccupied()) {
+                break;
+            }
+            unoccupiedSquares.add(squareAtCurrentCoordinate);
+        }
     }
 }
