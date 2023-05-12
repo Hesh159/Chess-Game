@@ -83,7 +83,15 @@ class ChessBoardMatrixTest {
         @Test
         void givenSquare_whenSquaresInRowAreOccupied_thenDontAddToResultList() {
             ChessSquare square = new ChessSquare(4, 3);
-            //chessBoardMatrix.setSquareOccupiedStatusAtCoords();
+            chessBoardMatrix.setSquareOccupiedStatusAtCoords(4, 1, true);
+            chessBoardMatrix.setSquareOccupiedStatusAtCoords(4, 6, true);
+            List<ChessSquare> resultList = chessBoardMatrix.getUnoccupiedSquaresInSameRow(square);
+            int expectedResultSize = 3;
+            assertThat(resultList).hasSize(expectedResultSize)
+                    .contains(new ChessSquare(4, 2))
+                    .contains(new ChessSquare(4, 5))
+                    .doesNotContain(new ChessSquare(4, 1))
+                    .doesNotContain(new ChessSquare(4, 7));
         }
     }
 }
