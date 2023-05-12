@@ -132,6 +132,11 @@ public class ChessSquare extends Rectangle {
     }
 
     @Override
+    public String toString() {
+        return (String.format("Row: %d ; Col: %d", this.row, this.col));
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (!(obj instanceof ChessSquare)) {
             return false;
