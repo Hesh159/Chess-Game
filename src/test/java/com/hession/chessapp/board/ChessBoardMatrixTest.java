@@ -1,6 +1,7 @@
 package com.hession.chessapp.board;
 
 import org.junit.jupiter.api.*;
+
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
@@ -93,6 +94,31 @@ class ChessBoardMatrixTest {
                     .contains(new ChessSquare(4, 5))
                     .doesNotContain(new ChessSquare(4, 1))
                     .doesNotContain(new ChessSquare(4, 7));
+        }
+
+        @Tag("GetCoordinatesInSameColTest")
+        @DisplayName("getUnoccupiedSquaresInSameCol test all values in same col are returned")
+        @Test
+        void givenSquare_whenNoSquaresOccupied_thenReturnWholeCol() {
+            ChessSquare square = new ChessSquare(6, 6);
+            List<ChessSquare> squaresFound = chessBoardMatrix.getUnoccupiedSquaresInSameCol(square);
+            int expectedResultSize = 7;
+            assertThat(squaresFound).hasSize(expectedResultSize)
+                    .contains(new ChessSquare(7, 6))
+                    .contains(new ChessSquare(5, 6))
+                    .contains(new ChessSquare(0, 6))
+                    .doesNotContain(new ChessSquare(6, 6));
+        }
+
+        @Tag("GetCoordinatesInSameColTest")
+        @DisplayName("getUnoccupiedSquaresInSameCol test no values returned if squares on either side are occupied")
+        @Test
+        void givenSquare_whenSurroundedByOccupiedSquares_thenReturnEmptyList() {
+            ChessSquare square = new ChessSquare( 3, 5);
+            chessBoardMatrix.setSquareOccupiedStatusAtCoords(2, 5, true);
+            chessBoardMatrix.setSquareOccupiedStatusAtCoords(4, 5, true);
+            List<ChessSquare> squaresFound = chessBoardMatrix.getUnoccupiedSquaresInSameCol(square);
+            assertThat(squaresFound).isEmpty();
         }
     }
 }
