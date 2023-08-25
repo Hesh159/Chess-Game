@@ -3,7 +3,7 @@ package com.hession.chessapp.pieces;
 import com.hession.chessapp.board.ChessBoardMatrix;
 import com.hession.chessapp.board.ChessSquare;
 
-public class King implements IsPiece {
+public class King implements Piece {
     ChessSquare currentSquare;
     ChessBoardMatrix chessBoardMatrix;
 

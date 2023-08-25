@@ -36,13 +36,13 @@ public class ChessBoardMatrix {
         chessBoardArrayRow.add(col, chessSquare);
     }
 
-    public ChessSquare getSquareAtCoords(int row, int col) {
+    public ChessSquare getSquareAtCoordinate(int row, int col) {
         List<ChessSquare> chessBoardArrayRow = boardMatrix.get(row);
         return chessBoardArrayRow.get(col);
     }
 
     public void setSquareOccupiedStatusAtCoords(int row, int col, boolean occupationStatus) {
-        ChessSquare square = getSquareAtCoords(row, col);
+        ChessSquare square = getSquareAtCoordinate(row, col);
         square.setOccupied(occupationStatus);
     }
 
@@ -79,7 +79,7 @@ public class ChessBoardMatrix {
     private void getUnoccupiedSquaresBelowStartSquare(ChessSquare square, boolean checkingRow, List<ChessSquare> unoccupiedSquares) {
         int startingCoordinate = (checkingRow) ? square.getCol() : square.getRow();
         for (int currentCoordinate = startingCoordinate - 1; currentCoordinate >= 0; currentCoordinate--) {
-            ChessSquare squareAtCurrentCoordinate = (checkingRow) ? getSquareAtCoords(square.getRow(), currentCoordinate) : getSquareAtCoords(currentCoordinate, square.getCol());
+            ChessSquare squareAtCurrentCoordinate = (checkingRow) ? getSquareAtCoordinate(square.getRow(), currentCoordinate) : getSquareAtCoordinate(currentCoordinate, square.getCol());
             if (squareAtCurrentCoordinate.isOccupied()) {
                 break;
             }
@@ -90,7 +90,7 @@ public class ChessBoardMatrix {
     private void getUnoccupiedSquaresAboveStartSquare(ChessSquare square, boolean checkingRow, List<ChessSquare> unoccupiedSquares) {
         int startingCoordinate = (checkingRow) ? square.getCol() : square.getRow();
         for (int currentCoordinate = startingCoordinate + 1; currentCoordinate < BOARD_SIZE; currentCoordinate++) {
-            ChessSquare squareAtCurrentCoordinate = (checkingRow) ? getSquareAtCoords(square.getRow(), currentCoordinate) : getSquareAtCoords(currentCoordinate, square.getCol());
+            ChessSquare squareAtCurrentCoordinate = (checkingRow) ? getSquareAtCoordinate(square.getRow(), currentCoordinate) : getSquareAtCoordinate(currentCoordinate, square.getCol());
             if (squareAtCurrentCoordinate.isOccupied()) {
                 break;
             }

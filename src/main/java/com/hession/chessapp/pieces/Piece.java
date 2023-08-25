@@ -2,7 +2,7 @@ package com.hession.chessapp.pieces;
 
 import com.hession.chessapp.board.ChessSquare;
 
-public interface IsPiece {
+public interface Piece {
 
     ChessSquare getCurrentSquare();
 

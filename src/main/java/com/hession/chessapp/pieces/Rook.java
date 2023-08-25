@@ -3,10 +3,7 @@ package com.hession.chessapp.pieces;
 import com.hession.chessapp.board.ChessBoardMatrix;
 import com.hession.chessapp.board.ChessSquare;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Rook implements IsPiece {
+public class Rook implements Piece {
 
     ChessSquare currentSquare;
     ChessBoardMatrix chessBoardMatrix;

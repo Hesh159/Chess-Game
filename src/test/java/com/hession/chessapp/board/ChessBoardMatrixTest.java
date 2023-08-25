@@ -37,7 +37,7 @@ class ChessBoardMatrixTest {
     void test_getSquareAt_5_4() {
         ChessSquare square = new ChessSquare(5, 4);
         chessBoardMatrix.addSquareToBoardMatrix(square);
-        ChessSquare resultSquare = chessBoardMatrix.getSquareAtCoords(5, 4);
+        ChessSquare resultSquare = chessBoardMatrix.getSquareAtCoordinate(5, 4);
         assertEquals(square, resultSquare);
     }
 
